@@ -4,10 +4,12 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.units.Distance;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class XRPDrivetrain extends SubsystemBase {
   private static final double kGearRatio =
@@ -58,13 +60,25 @@ public class XRPDrivetrain extends SubsystemBase {
     return m_rightEncoder.getDistance();
   }
 
+  public void moveLeftMotor(double speed) {
+    speed = Math.min(1, Math.max(-1, speed));
+    m_leftMotor.set(speed);
+  }
+
+  public void moveRightMotor(double speed) {
+    speed = Math.min(1, Math.max(-1, speed));
+    m_rightMotor.set(speed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
   }
 
   @Override
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
+    
   }
 }
